@@ -57,6 +57,55 @@ const contributors = [
         amount: "20,000",
         interest: "22,400"
     },
+    {
+        id: 9,
+        name: "Ajisafe Emeka",
+        tier: "Tier 2",
+        amount: "20,000",
+        interest: "22,400"
+    },
+    {
+        id: 10,
+        name: "Kunle Komolafe",
+        tier: "Tier 2",
+        amount: "20,000",
+        interest: "22,400"
+    },
+    {
+        id: 11,
+        name: "Samson Song",
+        tier: "Tier 2",
+        amount: "20,000",
+        interest: "22,400"
+    },
+    {
+        id: 12,
+        name: "Captain Tyre",
+        tier: "Tier 2",
+        amount: "20,000",
+        interest: "22,400"
+    },
+    {
+        id: 13,
+        name: "Andrew Salz",
+        tier: "Tier 2",
+        amount: "20,000",
+        interest: "22,400"
+    },
+    {
+        id: 14,
+        name: "Usman Danfodio",
+        tier: "Tier 2",
+        amount: "20,000",
+        interest: "22,400"
+    },
+    {
+        id: 15,
+        name: "Iyanu Emeka",
+        tier: "Tier 2",
+        amount: "20,000",
+        interest: "22,400"
+    },
 ]
 
 const Dashboard = () => {
