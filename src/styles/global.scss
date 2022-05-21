@@ -10,21 +10,21 @@
     border-radius: 8px;
 }
 
-.form {
-    max-width: 500px;
-}
-
 .main-container {
     max-width: 1440px;
     margin: 0 auto;
+}
+
+.table-data, .form, .card {
+    max-width: 500px;
+    margin: 0 auto;
+
 }
 
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
   }
   
   td, th {

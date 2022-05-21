@@ -108,6 +108,10 @@ const contributors = [
     },
 ]
 
+function commaSeperator(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const Dashboard = () => {
     const [totalAmount, setTotalAmount] = useState(0)
     const [totalInterest, setTotalInterest] = useState(0)
@@ -118,84 +122,65 @@ const Dashboard = () => {
     }, [])
     
     function TotalAmount() {
-        const sum = contributors.reduce((acc, obj) => {
+        return setTotalAmount(contributors.reduce((acc, obj) => {
             return acc + obj.amount;
-        }, 0)
-        // var users = new Array();
-
-        // contributors.forEach((item, i) => {
-        //     users[i] = item.amount
-        // })
-
-        // const sum = users.reduce((acc, obj) => {
-        //     return acc + obj;
-        // }, 1);
-
-        
-        setTotalAmount(sum)
-        // console.log(users);
-        console.log(sum);
+        }, 0))
     }
 
     function TotalInterest() {
-        const sum = contributors.reduce((acc, obj) => {
+        return setTotalInterest(contributors.reduce((acc, obj) => {
             return acc + obj.interest;
-        }, 0)
-        
-        setTotalInterest(sum)
-        // console.log(users);
-        console.log(sum);
+        }, 0))
+    }
+
+    function renderData() {
+        return contributors.map((contributor, index) => (
+            <tr>
+                <td>{index+1}</td>
+                <td>{contributor.name}</td>
+                <td>{contributor.tier}</td>
+                <td>&#8358;{commaSeperator(contributor.amount)}</td>
+                <td>&#8358;{commaSeperator(contributor.interest)}</td>
+            </tr>
+        ))
     }
 
 
+    return (
+        <div className='mgt-50'>
 
-
-  return (
-    <div className='mgt-30'>
-
-        <div className='d-flex'>
-            <div>
-                <h5>Total Amount Invested</h5>
-                <div>
-                    {totalAmount}
+            <div className='d-flex card'>
+                <div className='border-grey border-8 pd-14'>
+                    <h5 className='fs-20'>Total Amount Invested</h5>
+                    <div className='mgt-16 fs-42 fw-semi-bold'>
+                        &#8358;{commaSeperator(totalAmount)}
+                    </div>
+                </div>
+                <div className='mgl-20 border-grey border-8 pd-14'>
+                    <h5 className='fs-20'>Total Interest </h5>
+                    <div className='mgt-16 fs-42 fw-semi-bold'>
+                        &#8358;{commaSeperator(totalInterest)}
+                    </div>
                 </div>
             </div>
-            <div className='mgl-20'>
-                <h5>Total Interest </h5>
-                <div>
-                    {totalInterest}
-                </div>
+
+            <div className='table-data mgy-50'>
+                <h3 className='fs-32'>Investors</h3>
+                <table>
+                    <thead>
+                        <th>S/N</th>
+                        <th>Name</th>
+                        <th>Tier</th>
+                        <th>Amount</th>
+                        <th>Interest</th>
+                    </thead>
+                    <tbody>
+                        {renderData()}
+                    </tbody>
+                </table>
             </div>
         </div>
-
-
-
-
-        <h3>Investors</h3>
-        <table>
-            <thead>
-                <th>S/N</th>
-                <th>Name</th>
-                <th>Tier</th>
-                <th>Amount</th>
-                <th>Interest</th>
-            </thead>
-            <tbody>
-                {
-                    contributors.map((contributor, index) => (
-                        <tr>
-                            <td>{index+1}</td>
-                            <td>{contributor.name}</td>
-                            <td>{contributor.tier}</td>
-                            <td>&#8358;{contributor.amount}</td>
-                            <td>&#8358;{contributor.interest}</td>
-                        </tr>
-                    ))
-                }
-            </tbody>
-        </table>
-    </div>
-  )
+    )
 }
 
 export default Dashboard
