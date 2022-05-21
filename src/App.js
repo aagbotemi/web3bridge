@@ -1,6 +1,6 @@
 
 import AddForm from './components/AddForm';
-import Dashbaord from './pages/Dashbaord';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <h1 className='mgt-50 text-center'>Web3Bridge Ajo Task</h1>
       <AddForm />
 
-      <Dashbaord />
+      <Dashboard />
     </div>
   );
 }
