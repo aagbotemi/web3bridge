@@ -12,9 +12,9 @@ const AddForm = () => {
         if (tier === "tier1") {
             setAmount(10000)
         } else if (tier === "tier2") {
-            setAmount(15000)
-        } else if (tier === "tier3") {
             setAmount(20000)
+        } else if (tier === "tier3") {
+            setAmount(30000)
         }
       
     }, [tier])
@@ -97,7 +97,7 @@ const AddForm = () => {
                     type="text"
                     className='border-grey pd-12 border-8'
                     placeholder='Amount'
-                    value={tier === "tier1" ? "10000" : tier === "tier2" ? "15000" : tier === "tier3" ? "20000"  : null }
+                    value={tier === "tier1" ? "10000" : tier === "tier2" ? "20000" : tier === "tier3" ? "30000"  : null }
                     // onChange={(e) => setAmount(e.target.value)}
                  />
             </div>
