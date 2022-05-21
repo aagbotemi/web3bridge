@@ -33,7 +33,7 @@ const AddForm = () => {
 
 
   return (
-    <div  className="border-grey pd-25">
+    <div  className="border-grey form pd-25 mgx-40 round-8 mgt-30">
         <form onSubmit={handleSubmit}>
             <h3 className='mgb-20'>AJO APPLICATION FORM</h3>
             <div>
