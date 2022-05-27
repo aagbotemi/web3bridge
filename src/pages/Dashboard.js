@@ -12,7 +12,7 @@ const Dashboard = () => {
     useEffect(() => {
         TotalInterest()
         TotalAmount()
-    }, [contributors])
+    })
 
     useEffect(() => {
         getDataFromLocalStorage()
