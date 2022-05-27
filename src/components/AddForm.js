@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 const AddForm = () => {
-    const [name, setName] = useState('')
-    const [tier, setTier] = useState('')
-    const [amount, setAmount] = useState(0)
-    const [userData, setUserData] = useState([])
+    const [name, setName] = useState(undefined)
+    const [tier, setTier] = useState(undefined)
+    const [amount, setAmount] = useState(undefined)
+    // const [userData, setUserData] = useState([])
 
     useEffect(() => {
         if (tier === "tier1") {
@@ -19,10 +19,51 @@ const AddForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let data = { name, tier, amount}
+        
+        if(!name || !tier || !amount) {
+            alert("All fields must be filled!");
+            return;
+        }
 
-        setUserData(data)
-        console.log(userData);
+        let interest;
+        let total;
+
+        if (tier === 'tier1') {
+            let result = (7/100)*amount;
+            interest = result.toFixed(0)
+            total = Number(amount)+Number(interest);
+        } else if (tier === 'tier2') {
+            let result = (12/100)*amount;
+            interest = result.toFixed(0)
+            total = Number(amount)+Number(interest);
+        } else if (tier === 'tier3') {
+            let result = (25/100)*amount;
+            interest = result.toFixed(0)
+            total = Number(amount)+Number(interest);
+        }
+
+        const id = `SG-${Math.floor(Math.random() * 1000000)}`;
+        let data = { id, name, tier, amount, interest, total}
+
+        if(localStorage.getItem('savings')) {
+            let storeData = JSON.parse(localStorage.getItem('savings'));
+            if(storeData.length >= 15) {
+                alert("Number of participant is complete! Please try again later!");
+                return;
+            }
+            storeData.push(data)
+            localStorage.setItem('savings', JSON.stringify(storeData));
+        } else {
+            let storeData = []
+            storeData.push(data)
+            localStorage.setItem('savings', JSON.stringify(storeData));
+        }
+
+        setName("")
+        setTier("")
+        setAmount("")
+
+        alert("A new member has been added! Refresh the page to see your newly added member!")
     }
 
     return (
@@ -35,18 +76,21 @@ const AddForm = () => {
                         type="text"
                         className='border-grey pd-12 border-8'
                         placeholder='Enter your name'
+                        name='name'
+                        value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </div>
 
                 <div className='mgy-20'>
-                    <div className='fs-20'>Price Plan</div>
+                    <div className='fs-20 mgb-8'>Price Plan</div>
                     <div className='d-flex mgr-10'>
                         <input
                             name="tier"
                             placeholder="Enter amount"
                             type="radio"
                             value="tier1"
+                            defaultValue={tier}
                             id="tier1"
                             onChange={(e) => setTier(e.target.value)}
                         />
@@ -60,9 +104,10 @@ const AddForm = () => {
                             placeholder="Enter amount"
                             type="radio"
                             value="tier2"
+                            defaultValue={tier}
                             id="tier2"
                             onChange={(e) => setTier(e.target.value)}
-                            />
+                        />
                         <label htmlFor='tier2'>
                             Tier 2
                         </label>
@@ -74,8 +119,9 @@ const AddForm = () => {
                             type="radio"
                             value="tier3"
                             id="tier3"
+                            defaultValue={tier}
                             onChange={(e) => setTier(e.target.value)}
-                            />
+                        />
                         <label htmlFor='tier3'>
                             Tier 3
                         </label>
