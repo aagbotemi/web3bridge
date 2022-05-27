@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 
 const AddForm = () => {
-    const [name, setName] = useState(undefined)
-    const [tier, setTier] = useState(undefined)
-    const [amount, setAmount] = useState(undefined)
+    const [name, setName] = useState("")
+    const [tier, setTier] = useState("")
+    const [amount, setAmount] = useState("")
 
     useEffect(() => {
         if (tier === "tier1") {
@@ -34,15 +34,15 @@ const AddForm = () => {
 
         if (tier === 'tier1') {
             let result = (7/100)*amount;
-            interest = result.toFixed(0)
+            interest = result.toFixed(0);
             total = Number(amount)+Number(interest);
         } else if (tier === 'tier2') {
             let result = (12/100)*amount;
-            interest = result.toFixed(0)
+            interest = result.toFixed(0);
             total = Number(amount)+Number(interest);
         } else if (tier === 'tier3') {
             let result = (25/100)*amount;
-            interest = result.toFixed(0)
+            interest = result.toFixed(0);
             total = Number(amount)+Number(interest);
         }
 
@@ -142,13 +142,35 @@ const AddForm = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className='mgb-20'>
                     <label className='d-block fs-20'>Amount</label>
                     <input
                         type="text"
                         className='border-grey pd-12 border-8'
                         placeholder='Amount'
                         value={tier === "tier1" ? "10000" : tier === "tier2" ? "20000" : tier === "tier3" ? "30000"  : null }
+                    />
+                </div>
+
+                <div className='mgb-20'>
+                    <label className='d-block fs-20'>Interest</label>
+                    <input
+                        type="text"
+                        className='border-grey pd-12 border-8'
+                        placeholder='Interest'
+                        value={tier === "tier1" ? "700" : tier === "tier2" ? "2400" : tier === "tier3" ? "7500"  : null }
+                        // value={interest}
+                    />
+                </div>
+
+                <div className=''>
+                    <label className='d-block fs-20'>Total</label>
+                    <input
+                        type="text"
+                        className='border-grey pd-12 border-8'
+                        placeholder='Total'
+                        value={tier === "tier1" ? "10700" : tier === "tier2" ? "22400" : tier === "tier3" ? "37500"  : null }
+                        // value={total}
                     />
                 </div>
                 <button style={{background: "blue", color: "#ffffff"}} type="submit" className='border-8 pdy-14 pdx-32 fs-24 fw-semi-bold mgt-15'>Join</button>

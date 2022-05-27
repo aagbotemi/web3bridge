@@ -77,7 +77,7 @@ const Dashboard = () => {
                         onClick={() => handleRemove(contributor?.id)} 
                         style={{background: "blue", color: "#ffffff"}}
                         className='border-8 pdy-4 pdx-8 fs-15'
-                    >Remove</button>
+                    >Withdraw funds</button>
                 </td>
             </tr>
         )) : (
