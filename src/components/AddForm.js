@@ -4,7 +4,6 @@ const AddForm = () => {
     const [name, setName] = useState(undefined)
     const [tier, setTier] = useState(undefined)
     const [amount, setAmount] = useState(undefined)
-    // const [userData, setUserData] = useState([])
 
     useEffect(() => {
         if (tier === "tier1") {
@@ -15,7 +14,6 @@ const AddForm = () => {
             setAmount(30000)
         }
     }, [tier])
-    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -143,4 +141,4 @@ const AddForm = () => {
     )
 }
 
-export default AddForm
+export default AddForm;
