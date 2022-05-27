@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert';
 
 function commaSeperator(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -12,7 +13,7 @@ const Dashboard = () => {
     useEffect(() => {
         TotalInterest()
         TotalAmount()
-    }, [contributors])
+    })
 
     useEffect(() => {
         getDataFromLocalStorage()
@@ -46,7 +47,12 @@ const Dashboard = () => {
             let data = JSON.parse(localStorage.getItem('savings'));
             const res = data.filter(value => value.id !== id);
             localStorage.setItem('savings', JSON.stringify(res));
-            alert("Participant has been removed! Refresh page to see updated data!")
+            swal({
+                title: "OMG!",
+                text: "Participant has been removed! Refresh page to see updated data!",
+                icon: "error",
+                button: "Close!"
+            });
         }
         return;
     }
@@ -71,7 +77,7 @@ const Dashboard = () => {
                         onClick={() => handleRemove(contributor?.id)} 
                         style={{background: "blue", color: "#ffffff"}}
                         className='border-8 pdy-4 pdx-8 fs-15'
-                    >Remove</button>
+                    >Withdraw funds</button>
                 </td>
             </tr>
         )) : (
