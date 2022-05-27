@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import swal from 'sweetalert';
 
 const AddForm = () => {
     const [name, setName] = useState(undefined)
@@ -19,7 +20,12 @@ const AddForm = () => {
         e.preventDefault();
         
         if(!name || !tier || !amount) {
-            alert("All fields must be filled!");
+            swal({
+                title: "Ooppss!",
+                text: "All fields must be field",
+                icon: "error",
+                button: "Close!"
+            });
             return;
         }
 
@@ -46,7 +52,12 @@ const AddForm = () => {
         if(localStorage.getItem('savings')) {
             let storeData = JSON.parse(localStorage.getItem('savings'));
             if(storeData.length >= 15) {
-                alert("Number of participant is complete! Please try again later!");
+                swal({
+                    title: "Ooppss!",
+                    text: "Number of participants is complete! Please try again later!",
+                    icon: "error",
+                    button: "Close!"
+                });
                 return;
             }
             storeData.push(data)
@@ -61,7 +72,12 @@ const AddForm = () => {
         setTier("")
         setAmount("")
 
-        alert("A new member has been added! Refresh the page to see your newly added member!")
+        swal({
+            title: "Hurray!",
+            text: "A new member has been added! Refresh the page to see the newly added member!",
+            icon: "success",
+            button: "OK!"
+        });
     }
 
     return (

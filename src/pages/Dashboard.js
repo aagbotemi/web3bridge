@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert';
 
 function commaSeperator(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -46,7 +47,12 @@ const Dashboard = () => {
             let data = JSON.parse(localStorage.getItem('savings'));
             const res = data.filter(value => value.id !== id);
             localStorage.setItem('savings', JSON.stringify(res));
-            alert("Participant has been removed! Refresh page to see updated data!")
+            swal({
+                title: "OMG!",
+                text: "Participant has been removed! Refresh page to see updated data!",
+                icon: "error",
+                button: "Close!"
+            });
         }
         return;
     }
