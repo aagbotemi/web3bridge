@@ -18,7 +18,7 @@ const Dashboard = () => {
     useEffect(() => {
         getDataFromLocalStorage()
     }, [])
-
+    
     const getDataFromLocalStorage = () => {
         let data = JSON.parse(localStorage.getItem('savings'));
         setContributors(data)
@@ -42,18 +42,20 @@ const Dashboard = () => {
         }
     }
 
-    const handleRemove = (id) => {
+    const handleRemove = async (id) => {
         if(window.confirm("Are you sure you want to remove this participant!")) {
             let data = JSON.parse(localStorage.getItem('savings'));
             const res = data.filter(value => value.id !== id);
             localStorage.setItem('savings', JSON.stringify(res));
-            swal({
-                title: "OMG!",
-                text: "Participant has been removed! Refresh page to see updated data!",
-                icon: "error",
+            await swal({
+                title: "Cool!",
+                text: "Participant has successfully withdraw funds!",
+                icon: "success",
                 button: "Close!"
             });
+            window.location.reload()
         }
+
         return;
     }
     
