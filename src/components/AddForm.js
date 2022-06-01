@@ -16,9 +16,8 @@ const AddForm = () => {
         }
     }, [tier])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
         if(!name || !tier || !amount) {
             swal({
                 title: "Ooppss!",
@@ -68,16 +67,14 @@ const AddForm = () => {
             localStorage.setItem('savings', JSON.stringify(storeData));
         }
 
-        setName("")
-        setTier("")
-        setAmount("")
-
-        swal({
+        await swal({
             title: "Hurray!",
-            text: "A new member has been added! Refresh the page to see the newly added member!",
+            text: "A new member has been added!",
             icon: "success",
             button: "OK!"
         });
+
+        window.location.reload()
     }
 
     return (
